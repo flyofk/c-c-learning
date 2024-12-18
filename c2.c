@@ -2,44 +2,41 @@
 #include <stdbool.h>
 #include <string.h>
 
-// Функция для вычисления длины строки
-size_t my_strlen(const char* str) {
-    size_t length = 0;
-    while (*str++) {
-        length++;
-    }
-    return length;
-}
-
-int main() {
-    char str[100]; // Массив для хранения строки
+int main(){
+    char str[100]; 
+    printf("Введите строку для проверки на палиндром ");
+    scanf("%99s",str);
     
-    // Считываем строку с консоли
-    printf("Введите строку для проверки на палиндром: ");
-    fgets(str, sizeof(str), stdin);
-
-    // Удаляем символ новой строки, если он есть
-    size_t len = strlen(str);
-    if (str[len - 1] == '\n') {
-        str[len - 1] = '\0'; // Обрезаем символ новой строки
-        len--; // Уменьшаем длину строки
+    int len = 0;
+    int i;
+    int first_str;
+    int second_str;
+    while (str[len]!='\n' && str[len]!='\0')
+    {
+        len++;
     }
 
-    // Проверка на палиндром
-    bool isPalindrome = true;
-    for (size_t i = 0; i < len / 2; ++i) {
-        if (str[i] != str[len - i - 1]) {
-            isPalindrome = false;
+    for(i = 0; i<len/2;i++){
+        str[i] = first_str;
+        str[len-i-1] = second_str;
+        if (first_str!= second_str){
             break;
         }
-    }
 
-    // Вывод результата
-    if (isPalindrome) {
-        printf("Строка \"%s\" является палиндромом.\n", str);
-    } else {
-        printf("Строка \"%s\" не является палиндромом.\n", str);
-    }
 
-    return 0;
+    
+
+
+
+
+    }
+    if (first_str == second_str){
+            printf("строка %s является палиндромом",str);
+        }
+        else{
+            printf("строка %s не является палиндромом",str);
+
+        }
+
+    
 }
