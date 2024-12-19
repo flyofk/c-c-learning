@@ -1,41 +1,38 @@
 #include <stdio.h>
-#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
 
-int main(){
-    char str[100]; 
-    printf("Введите строку для проверки на палиндром ");
-    scanf("%99s",str);
-    
-    int len = 0;
-    int i;
-    int first_str;
-    int second_str;
-    while (str[len]!='\n' && str[len]!='\0')
-    {
-        len++;
+int isPalindrome(char str[]) {
+    int left = 0;
+    int right = strlen(str) - 1;
+
+    while (left < right) {
+        while (left < right && !isalnum(str[left])) left++;
+        while (left < right && !isalnum(str[right])) right--;
+
+        if (tolower(str[left]) != tolower(str[right])) {
+            return 0; 
+        }
+        left++;
+        right--;
     }
 
-    for(i = 0; i<len/2;i++){
-        str[i] = first_str;
-        str[len-i-1] = second_str;
-        if (first_str!= second_str){
-            break;
-        }
+    return 1; 
+}
 
+int main() {
+    char str[100];
 
+    printf("Введите строку: ");
+    fgets(str, sizeof(str), stdin);
     
+    str[strcspn(str, "\n")] = 0;
 
-
-
-
+    if (isPalindrome(str)) {
+        printf("Палиндром.\n");
+    } else {
+        printf("Не палиндром.\n");
     }
-    if (first_str == second_str){
-            printf("строка %s является палиндромом",str);
-        }
-        else{
-            printf("строка %s не является палиндромом",str);
 
-        }
-
-    
+    return 0;
 }
